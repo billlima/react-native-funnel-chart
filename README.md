@@ -4,10 +4,33 @@ Customizable funnel chart component for React Native
 
 ## Installation
 
-```sh
-npm install react-native-funnel-chart --save
-npm install react-native-svg --save
-```
+1. Install library
+  
+  ```sh
+  npm install react-native-funnel-chart --save
+  ```
+
+2. Install [react-native-svg](https://www.npmjs.com/package/react-native-svg) (dependency)
+
+  ```sh
+  npm install react-native-svg --save
+  ```
+
+3. Link native code
+ 
+  See [react-native-svg](https://github.com/react-native-svg/react-native-svg#installation) documentation for more informations.
+
+  With autolinking (react-native 0.60+)
+
+  ```bash
+  cd ios && pod install
+  ```
+
+  Pre 0.60
+
+  ```bash
+  react-native link react-native-svg
+  ```
 
 ## Usage
 
