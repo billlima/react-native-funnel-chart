@@ -62,7 +62,7 @@ The "data" property is the only one required.
 
 | **Property**           | **Default** | **Type**                   | **Description**                                |
 |--------------------|---------|------------------------|------------------------------------------------------------|
-| data               |         | [DataObject](#dataobject)[]          | Data for the chart, see example. **required**              |
+| data               |         | [DataObject](#dataobject)[]          | Data for the chart, see example.               |
 | colors?             |         | string[]               | RGB or Hex colors, e.g.: ['rgb(111,111,111)', '#abaddd']. |
 | sort?               | true    | boolean                | If true, data are sorted in descending order.             |
 | itemHeight?         | 30      | number                 | Height of chart items.                                    |
