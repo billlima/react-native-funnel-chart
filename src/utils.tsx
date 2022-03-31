@@ -53,6 +53,12 @@ const getColors = (length: number = 20) => {
   );
 };
 
+/**
+ * Get witdh of window
+ *
+ * @param   Number  preferredWidth
+ * @return  Number  width of screen
+ */
 const getWidth = (value?: number) => {
   let width = Dimensions.get('window').width;
 

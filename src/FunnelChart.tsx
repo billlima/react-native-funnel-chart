@@ -16,6 +16,9 @@ export interface FunnelChartProps {
   sort?: boolean;
   itemHeight?: number;
   width?: number;
+  labelStyle?: any;
+  valueStyle?: any;
+  labelNumberOfLines?: number;
   formatValueLabel?: (item: FunnelChartData) => any;
   onTextPress?: (item: FunnelChartData) => void;
 }
@@ -37,7 +40,11 @@ const FunnelChart = (props: FunnelChartProps) => {
         key={idx}
         style={[styles.textContainer, { height: ctrl.itemHeight }]}
       >
-        <Text key={idx} style={styles.textRight} numberOfLines={2}>
+        <Text
+          key={idx}
+          style={[styles.textRight, props.labelStyle || {}]}
+          numberOfLines={props.labelNumberOfLines || 1}
+        >
           {item.text}
         </Text>
       </View>
@@ -60,7 +67,7 @@ const FunnelChart = (props: FunnelChartProps) => {
         key={idx}
         style={[styles.textContainer, { height: ctrl.itemHeight }]}
       >
-        <Text key={idx} style={styles.textLeft}>
+        <Text key={idx} style={[styles.textLeft, props.valueStyle || {}]}>
           {ctrl.getValue(item)}
         </Text>
       </View>
