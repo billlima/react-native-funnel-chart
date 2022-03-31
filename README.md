@@ -18,15 +18,15 @@ Customizable funnel chart component for React Native
 
 3. Link native code
  
-  See [react-native-svg](https://github.com/react-native-svg/react-native-svg#installation) documentation for more informations.
+  &nbsp;&nbsp;&nbsp;See [react-native-svg](https://github.com/react-native-svg/react-native-svg#installation) documentation for more informations.
 
-  With autolinking (react-native 0.60+)
+  &nbsp;&nbsp;&nbsp;With autolinking (react-native 0.60+)
 
   ```bash
   cd ios && pod install
   ```
 
-  Pre 0.60
+  &nbsp;&nbsp;&nbsp;Pre 0.60
 
   ```bash
   react-native link react-native-svg
@@ -70,7 +70,7 @@ import FunnelChart from 'react-native-funnel-chart';
 | onTextPress?        |         | function(item) => void | callback function when label is pressed.                  |
 
 
-#### DataObject
+### DataObject
 
 Data props is the only required.
 
