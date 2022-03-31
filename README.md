@@ -1,6 +1,6 @@
 # react-native-funnel-chart
 
-Customizable funnel chart component for React Native
+Customizable funnel chart component for React Native.
 
 ## Installation
 
@@ -33,6 +33,8 @@ Customizable funnel chart component for React Native
   ```
 
 ## Usage
+
+[See full example](https://github.com/billlima/react-native-funnel-chart/blob/master/example/src/App.tsx).
 
 ```js
 import FunnelChart from 'react-native-funnel-chart';
