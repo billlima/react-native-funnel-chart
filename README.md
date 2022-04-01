@@ -72,7 +72,7 @@ The "data" property is the only one required.
 | labelStyle?         |         | any                    | Style of labels (like Stylesheet).                        |
 | valueStyle?         |         | any                    | Style of values (like Stylesheet).                        |
 | labelNumberOfLines? | 1       | number                 | Max number of lines on each labels.                       |
-| labelsFlex?         | 2       | number                 | Flex value of labels.                                     |
+| labelsFlex?         | 2       | number                 | Flex value of labels. Set 1 to centralize chart.                                     |
 | valuesFlex?         | 1       | number                 | Flex value of values container.                           |
 | formatValueLabel?   |         | function(item) => any  | This function change the format of the display values.    |
 | onTextPress?        |         | function(item) => void | callback function when label is pressed.                  |
