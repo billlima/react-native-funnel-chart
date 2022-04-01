@@ -18,12 +18,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   labelsContainer: {
-    flex: 2,
     textAlign: 'right',
     paddingRight: 10,
   },
   valuesContainer: {
-    flex: 1,
     textAlign: 'left',
     paddingLeft: 10,
   },

@@ -56,8 +56,8 @@ const getColors = (length: number = 20) => {
 /**
  * Get witdh of window
  *
- * @param   Number  preferredWidth
- * @return  Number  width of screen
+ * @param   Number  value   preferredWidth
+ * @return  Number          width of screen
  */
 const getWidth = (value?: number) => {
   let width = Dimensions.get('window').width;
@@ -72,11 +72,32 @@ export const getPercent = (value: number, max: number) => (100 * value) / max;
 export const getValueFromPercent = (percent: number, max: number) =>
   (percent * max) / 100;
 
+/**
+ * Calc and return two points of the SVG Polygon.
+ *
+ * @param   Number    maxWidth    Max width of all polygon
+ * @param   Number    value       Value percent of item
+ * @param   Number    yValue      Y value for each point
+ * @param   boolean?  inverted    flip the points horizontally
+ * @return  String                Two points like '0,0 102,0'
+ */
+const get2HorizontallyPointsSvg = (
+  maxWidth: number,
+  value: number,
+  yValue: number,
+  inverted: boolean = false
+) => {
+  const x1 = maxWidth / 2 - value / 2;
+  const x2 = maxWidth / 2 + value / 2;
+  return `${inverted ? x2 : x1},${yValue} ${inverted ? x1 : x2},${yValue}`;
+};
+
 const utils = {
   getColors,
   getWidth,
   getPercent,
   getValueFromPercent,
+  get2HorizontallyPointsSvg,
 };
 
 export default utils;

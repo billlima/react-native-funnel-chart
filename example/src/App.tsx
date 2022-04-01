@@ -1,11 +1,11 @@
 import * as React from 'react';
 
-import { StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import FunnelChart from 'react-native-funnel-chart';
 
 export default function App() {
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <View style={styles.card}>
         <Text style={styles.title}>Funnel Chart</Text>
         <FunnelChart
@@ -18,11 +18,20 @@ export default function App() {
             { text: 'Luiz Gama', value: 902 },
             { text: 'Carolina de Jesus', value: 1222 },
             { text: 'Machado de Assis', value: 1345 },
-            { text: 'Maria dos Reis', value: 1111 },
+            { text: 'Billie Holiday', value: 1111 },
+            { text: 'Sister Rosetta Tharpe', value: 1423 },
+            { text: 'Elza Soares', value: 643 },
+            { text: 'Liniker', value: 172 },
+            { text: 'Maria dos Reis', value: 1165 },
+            { text: 'Nina Simone', value: 872 },
+            { text: 'Bezerra da Silva', value: 543 },
+            { text: 'Gilberto Gil', value: 900 },
+            { text: 'Bob Marley', value: 222 },
+            { text: 'Jimi Hendrix', value: 258 },
           ]}
         />
       </View>
-    </View>
+    </ScrollView>
   );
 }
 

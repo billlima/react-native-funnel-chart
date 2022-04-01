@@ -2,26 +2,8 @@ import React from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 import Svg, { Polygon } from 'react-native-svg';
 import Controller from './controller';
+import type { FunnelChartData, FunnelChartProps } from './interfaces';
 import styles from './styles';
-
-export interface FunnelChartData {
-  value: number;
-  text: string;
-  color?: string;
-}
-
-export interface FunnelChartProps {
-  data: Array<FunnelChartData>;
-  colors?: Array<string>;
-  sort?: boolean;
-  itemHeight?: number;
-  width?: number;
-  labelStyle?: any;
-  valueStyle?: any;
-  labelNumberOfLines?: number;
-  formatValueLabel?: (item: FunnelChartData) => any;
-  onTextPress?: (item: FunnelChartData) => void;
-}
 
 const FunnelChart = (props: FunnelChartProps) => {
   const ctrl = Controller(props);
@@ -91,24 +73,12 @@ const FunnelChart = (props: FunnelChartProps) => {
       );
     }
 
-    const calcP = (
-      max: number,
-      v: number,
-      y: number,
-      inverted: boolean = false
-    ) => {
-      const x1 = max / 2 - v / 2;
-      const x2 = max / 2 + v / 2;
-      return `${inverted ? x2 : x1},${y} ${inverted ? x1 : x2},${y}`;
-    };
-
-    const p1 = calcP(w, value, 0);
-    const p2 = calcP(w, nextValue, ctrl.itemHeight, true);
+    const points = ctrl.getPointsSvg(w, value, nextValue);
 
     return (
       <View style={[styles.chartItemContainer, { width: wMax }]} key={idx}>
         <Svg width={w} height={ctrl.itemHeight} style={styles.svg}>
-          <Polygon points={`${p1} ${p2}`} fill={color} />
+          <Polygon points={points} fill={color} />
         </Svg>
         {line()}
       </View>
@@ -125,7 +95,9 @@ const FunnelChart = (props: FunnelChartProps) => {
 
   return (
     <View style={[styles.chartContainer, { width: props.width || 'auto' }]}>
-      <View style={[styles.labelsContainer]}>{ctrl.data.map(labelText)}</View>
+      <View style={[styles.labelsContainer, { flex: props.labelsFlex || 2 }]}>
+        {ctrl.data.map(labelText)}
+      </View>
       <View
         style={{ paddingTop: ctrl.paddingTopDiff, width: ctrl.widthChartMax }}
       >
@@ -135,13 +107,15 @@ const FunnelChart = (props: FunnelChartProps) => {
             idx,
             ctrl.widthChartMax,
             ctrl.widthChart,
-            item.valuePercent,
+            item.valuePercent!,
             ctrl.getNextValue(idx),
-            item.color
+            item.color!
           )
         )}
       </View>
-      <View style={styles.valuesContainer}>{ctrl.data.map(valueText)}</View>
+      <View style={[styles.valuesContainer, { flex: props.valuesFlex || 1 }]}>
+        {ctrl.data.map(valueText)}
+      </View>
     </View>
   );
 };

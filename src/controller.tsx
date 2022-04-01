@@ -1,24 +1,22 @@
-import type { FunnelChartData, FunnelChartProps } from './FunnelChart';
+import type { FunnelChartData, FunnelChartProps } from './interfaces';
 import utils from './utils';
 
 const Controller = (props: FunnelChartProps) => {
-  const { data, colors, sort, itemHeight, width, formatValueLabel } = props;
+  const { data, colors, sort, formatValueLabel } = props;
 
-  const _width = width || utils.getWidth();
-
-  const widthChart = _width / (_width > 500 ? 2.5 : 4);
-
+  const width = props.width || utils.getWidth();
+  const itemHeight = props.itemHeight || 30;
+  const widthChart = width / (width > 500 ? 2.5 : 4);
   const chartColors = colors || utils.getColors(data.length);
 
   const getColor = (idx: number) => {
-    idx = idx;
     while (idx >= chartColors.length) {
       idx -= chartColors.length;
     }
     return chartColors[idx];
   };
 
-  const getData = () => {
+  const getData = (): FunnelChartData[] => {
     let _data = data || [];
 
     const maxValue = _data
@@ -40,37 +38,45 @@ const Controller = (props: FunnelChartProps) => {
         color: i.color || getColor(idx),
       };
     });
+  };
 
-    // return _data.map((i, idx) => {
-    //   return {
-    //     ...i,
-    //     nextValue: data.length - 1 === idx ? null : _data[idx + 1].value,
-    //   };
-    // });
+  const isLastItem = (idx: number): boolean => {
+    return idx === data.length - 1;
   };
 
   const getNextValue = (idx: number): number | null => {
-    if (idx === data.length - 1) {
-      return null;
-    }
-    return getData()[idx + 1].valuePercent;
+    return isLastItem(idx) ? null : getData()[idx + 1].valuePercent!;
   };
 
   const getValue = (item: FunnelChartData) => {
-    if (formatValueLabel) {
-      return formatValueLabel(item);
-    }
-    return item.value;
+    return formatValueLabel ? formatValueLabel(item) : item.value;
+  };
+
+  const getPointsSvg = (
+    maxWidth: number,
+    value: number,
+    nextValue: number
+  ): string => {
+    const pointsUp = utils.get2HorizontallyPointsSvg(maxWidth, value, 0);
+    const pointsDown = utils.get2HorizontallyPointsSvg(
+      maxWidth,
+      nextValue,
+      itemHeight,
+      true
+    );
+    return `${pointsUp} ${pointsDown}`;
   };
 
   return {
     data: getData(),
-    getNextValue,
     widthChartMax: widthChart + 34,
     widthChart,
-    getValue,
     itemHeight: itemHeight || 30,
     paddingTopDiff: (itemHeight || 30) / 2,
+
+    getNextValue,
+    getValue,
+    getPointsSvg,
   };
 };
 

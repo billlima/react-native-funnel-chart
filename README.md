@@ -2,6 +2,8 @@
 
 Customizable funnel chart component for React Native.
 
+<img src="images/print4_ok.png" width="1000" />
+
 ## Installation
 
 1. Install library
@@ -70,6 +72,8 @@ The "data" property is the only one required.
 | labelStyle?         |         | any                    | Style of labels (like Stylesheet).                        |
 | valueStyle?         |         | any                    | Style of values (like Stylesheet).                        |
 | labelNumberOfLines? | 1       | number                 | Max number of lines on each labels.                       |
+| labelsFlex?         | 2       | number                 | Flex value of labels.                                     |
+| valuesFlex?         | 1       | number                 | Flex value of values container.                           |
 | formatValueLabel?   |         | function(item) => any  | This function change the format of the display values.    |
 | onTextPress?        |         | function(item) => void | callback function when label is pressed.                  |
 
